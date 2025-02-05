@@ -77,3 +77,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: ${{ steps.sync.outputs.new_branch }}
           destination_branch: ${{ github.event.client_payload.data.branch }}
+
+          - id: install-dependencies
+  name: Installing dependencies...
+  run: |
+    cd ${{ github.event.client_payload.data.directory }}
+    npm install --legacy-peer-deps
+    npm install --ignore-scripts --force @plasmicapp/cli
+
