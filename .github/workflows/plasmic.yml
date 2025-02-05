@@ -31,6 +31,9 @@ jobs:
         with:
           key: lock-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}
           path: ${{ github.event.client_payload.data.directory }}/node_modules
+      - id: npm-install
+        name: Installing dependencies with npm (force)...
+        run: npm install --force
       - id: init
         name: Initializing Plasmic app...
         uses: plasmicapp/plasmic-action@master
