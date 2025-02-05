@@ -35,8 +35,12 @@ jobs:
         name: Installing dependencies...
         run: |
           cd ${{ github.event.client_payload.data.directory }}
-          npm install --legacy-peer-deps
+          npm ci --legacy-peer-deps
           npm install --ignore-scripts --force @plasmicapp/cli
+      - id: verify-cli
+        name: Verifying Plasmic CLI installation...
+        run: |
+          npx plasmic --version
       - id: init
         name: Initializing Plasmic app...
         uses: plasmicapp/plasmic-action@master
